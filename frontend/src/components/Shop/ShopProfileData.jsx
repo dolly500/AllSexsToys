@@ -24,7 +24,7 @@ const ShopProfileData = ({ isOwner }) => {
     products && products.map((product) => product.reviews).flat();
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <div className="flex w-full items-center justify-between">
         <div className="w-full flex">
           <div className="flex items-center" onClick={() => setActive(1)}>

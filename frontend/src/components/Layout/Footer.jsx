@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef }  from "react";
+import emailjs from 'emailjs-com';
 import {
   AiFillFacebook,
   AiFillInstagram,
@@ -14,25 +15,60 @@ import {
 import logo from "../../static/imgs/logo.png";
 
 const Footer = () => {
+  const emailInputRef = useRef(null);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    // Replace these with your actual EmailJS IDs
+    const serviceId = 'service_ris2vwj';
+    const templateId = 'template_alo301e';
+    const userId = 'Qr40OaloluqTkfltN';
+
+    const emailContent = {
+      email: emailInputRef.current.value // Capture the email content from the input field
+    };
+
+    emailjs.send(serviceId, templateId, emailContent, userId)
+      .then((response) => {
+        console.log('Email sent!', response);
+        // Handle success, e.g., show a success message, clear form fields, etc.
+      ////////////////////////////////////////  emailInputRef.current.value = '';
+      })
+
+
+      .catch((error) => {
+        console.error('Error sending email:', error);
+        // Handle error, e.g., show an error message to the user
+      });
+  };
+
+  // const handleEmailChange = (e) => {
+  //   setEmail(e.target.value);
+  // };
+
   return (
     <div className="bg-[#000] text-white">
       <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-[#E6007E] py-7">
         <h1 className="lg:text-4xl text-3xl md:mb-0 mb-6 lg:leading-normal font-semibold md:w-2/5">
-          <span className="text-[#a79bc7]">Subscribe</span> us for get news{" "}
+          <span className="text-white">Subscribe</span> us for get news{" "}
           <br />
           events and offers
         </h1>
         <div>
-          <input
-            type="text"
+        <form onSubmit={sendEmail}>
+        <input
+            type="email"
+            ref={emailInputRef}
             required
             placeholder="Enter your email..."
             className="text-gray-800
                 sm:w-72 w-full sm:mr-5 mr-1 lg:mb-0 mb-4 py-2.5 rounded px-2 focus:outline-none"
           />
-          <button className="hover:bg-[#000] bg-[#000000] hover:bg-blue-500 duration-300 px-5 py-2.5 rounded-md text-whie md:w-auto w-full">
+          <button type="submit" className="hover:bg-[#000] bg-[#000000] hover:bg-blue-500 duration-300 px-5 py-2.5 rounded-md text-whie md:w-auto w-full">
             Submit
           </button>
+        </form>
         </div>
       </div>
       <div className="grid grid-cols-1 sm:gird-cols-3 lg:grid-cols-4 gap-6 sm:px-8 px-5 py-16 sm:text-center">

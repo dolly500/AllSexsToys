@@ -6,6 +6,8 @@ import axios from "axios";
 import { server } from "../../server";
 import { toast } from "react-toastify";
 import { RxAvatar } from "react-icons/rx";
+import { FaHome } from "react-icons/fa"; 
+import logo from "../../static/imgs/logo.png"
 
 const ShopCreate = () => {
   const [email, setEmail] = useState("");
@@ -58,8 +60,22 @@ const ShopCreate = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 ">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
+      <Link to="/">
+          {/* Home Icon Button */}
+          <button className="absolute top-4 right-4 text-pink-600">
+            <FaHome size={24} />
+          </button>
+      </Link>
+      <Link to="/">
+              <img
+                src= {logo}
+                alt=""
+
+                style={{ height: '130px', width: '120px', display: 'flex', margin: '0 auto'}} 
+              />
+      </Link>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Register as a seller
         </h2>
